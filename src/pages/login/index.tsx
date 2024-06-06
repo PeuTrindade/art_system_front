@@ -31,6 +31,8 @@ export default function Login() {
             if (response.ok) {
                 const userToken = data.token
 
+                toast('Login realizado com sucesso!', { type: 'success' })
+
                 Cookies.set('token', userToken)
 
                 push('/')
