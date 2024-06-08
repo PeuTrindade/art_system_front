@@ -34,6 +34,7 @@ export default function Login() {
                 toast('Login realizado com sucesso!', { type: 'success' })
 
                 Cookies.set('token', userToken)
+                window.localStorage.setItem('user', JSON.stringify(data.user))
 
                 push('/')
             } else {
