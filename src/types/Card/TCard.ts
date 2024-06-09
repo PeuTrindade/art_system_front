@@ -3,4 +3,5 @@ export type TCard = {
     title: string
     value: number
     createdAt: string
+    id: number
 }

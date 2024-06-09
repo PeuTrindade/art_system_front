@@ -20,8 +20,9 @@ export default function Home() {
 
       if (response.ok) {
         const data = await response.json()
+        const reversedArts = [...data.arts].reverse()
 
-        setArts(data.arts)
+        setArts(reversedArts)
       } else {
         toast('Falha ao buscar artes. Tente novamente!', { type: 'error' })
       }
@@ -37,14 +38,14 @@ export default function Home() {
   return (
     <main>
         <Navbar />
-        <div className="container mt-3 d-flex flex-column gap-3">
+        <div className="container mt-3 p-3 d-flex flex-column gap-3">
           <div>
             <h2>Artes</h2>
             <p>Confira todas as artes publicadas!</p>
           </div>
           <div className="d-flex flex-wrap gap-3">
             {arts && arts.map((art, key) => (
-              <Card key={key} title={art.name} value={art.valuedAt} image={undefined} createdAt={art.createdAt} />
+              <Card key={key} id={art.id} title={art.name} value={art.valuedAt} image={art.image ? `${process.env.NEXT_PUBLIC_API}/${art.image?.replace('uploads/', '')}` : undefined} createdAt={art.createdAt} />
             ))}
           </div>
         </div>
