@@ -1,6 +1,9 @@
 import { TCard } from "@/types/Card/TCard";
+import { useRouter } from "next/router";
 
-export default function Card({ title, value, image, createdAt }: TCard) {
+export default function Card({ title, id, value, image, createdAt }: TCard) {
+    const { push } = useRouter()
+    
     function formatDate(date: Date) {
         const day = String(date.getDate()).padStart(2, '0');
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -16,7 +19,7 @@ export default function Card({ title, value, image, createdAt }: TCard) {
             <div className="card-body d-flex flex-column gap-3">
                 <h5 className="card-title">{title}</h5>
                 <span className="badge text-bg-secondary align-self-start">Valor: R${value}</span>
-                <a href="#" className="btn btn-primary">Comentar</a>
+                <button onClick={() => push(`/art/${id}`)} className="btn btn-primary">Comentar</button>
                 <span>Criado em: {formatDate(new Date(createdAt))}</span>
             </div>
         </div>
