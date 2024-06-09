@@ -5,9 +5,13 @@ export default function Navbar() {
     const [username, setUsername] = useState<string>()
 
     useEffect(() => {
-        const userName = JSON.parse(sessionStorage.getItem('user') as string).name
+        const userData = sessionStorage.getItem('user') as string
 
-        setUsername(userName)
+        if (userData) {
+            const userName = JSON.parse(userData).name
+
+            setUsername(userName)
+        }
     }, [])
 
     return (
