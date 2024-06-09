@@ -3,7 +3,7 @@ import { TArtistCard } from "@/types/ArtistCard/TArtistCard";
 export default function ArtistCard({ name, email, age, image, style }: TArtistCard) {
     return (
         <div className="card" style={{ width: '18rem' }}>
-            {image && <img src={image} className="card-img-top" alt="Imagem de uma arte publicada." />}
+            {image && <img style={{ width: '100%', height: '200px', objectFit: 'cover' }} src={image} className="card-img-top" alt="Imagem de uma arte publicada." />}
             {!image && <img style={{ width: '100%', height: '200px', objectFit: 'cover' }} src='https://www.pngkey.com/png/detail/233-2332677_ega-png.png' />}
             <div className="card-body d-flex flex-column gap-3">
                 <div>

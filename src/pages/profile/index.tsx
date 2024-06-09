@@ -10,8 +10,7 @@ export default function Profile() {
     const [style, setStyle] = useState<string>()
     const [age, setAge] = useState<number>()
     const [image, setImage] = useState<any>()
-    const { push, query } = useRouter()
-    const artId = query.id as string
+    const { push } = useRouter()
     
     const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -43,7 +42,9 @@ export default function Profile() {
 
     const updateImage = async () => {
         try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API}/art/image/${artId}`, {
+            const userId = JSON.parse(sessionStorage.getItem('user') as any).id as number
+
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API}/user/image/${userId}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${Cookies.get('token')}`
@@ -81,7 +82,7 @@ export default function Profile() {
                 style: formattedStyle
             }
 
-            const response = await fetch(`${process.env.NEXT_PUBLIC_API}/user/update/${userId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API}/user/${userId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -93,7 +94,7 @@ export default function Profile() {
             if (response.ok) {
                 toast('Dados atualizados com sucesso!', { type: 'success' })
                 
-                push('/')
+                await updateImage()
             } else {
                 toast('Ocorreu um erro ao atualizar. Tente novamente!', { type: 'error' })
             }

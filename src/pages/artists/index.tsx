@@ -44,7 +44,7 @@ const Artists = () => {
             </div>
             <div className="d-flex flex-wrap gap-3">
                 {artists && artists.map((artist, key) => (
-                    <ArtistCard age={artist.age} email={artist.email} image={undefined} name={artist.name} style={artist.style} key={key} />
+                    <ArtistCard age={artist.age} email={artist.email} image={artist.image ? `${process.env.NEXT_PUBLIC_API}/${artist.image?.replace('uploads/', '')}` : undefined} name={artist.name} style={artist.style} key={key} />
                 ))}
             </div>
             </div>
