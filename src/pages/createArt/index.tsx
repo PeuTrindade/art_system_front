@@ -19,7 +19,7 @@ export default function CreateArt() {
 
     const onHandleSubmit = async () => {
         try {
-            const userId = JSON.parse(localStorage.getItem('user') as any).id as number
+            const userId = JSON.parse(sessionStorage.getItem('user') as any).id as number
 
             const requestBody = {
                 name,

@@ -45,7 +45,7 @@ export default function Home() {
           </div>
           <div className="d-flex flex-wrap gap-3">
             {arts && arts.map((art, key) => (
-              <Card key={key} id={art.id} title={art.name} value={art.valuedAt} image={undefined} createdAt={art.createdAt} />
+              <Card key={key} id={art.id} title={art.name} value={art.valuedAt} image={art.image ? `${process.env.NEXT_PUBLIC_API}/${art.image?.replace('uploads/', '')}` : undefined} createdAt={art.createdAt} />
             ))}
           </div>
         </div>
