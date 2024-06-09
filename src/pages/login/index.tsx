@@ -73,7 +73,7 @@ export default function Login() {
                 <div className="d-flex flex-column gap-1 mt-3">
                     <button type="submit" className="btn btn-success">Entrar</button>
                     <hr />
-                    <button type="submit" className="btn btn-primary">Cadastrar</button>
+                    <button type="button" onClick={() => push('/signUp')} className="btn btn-primary">Cadastrar</button>
                 </div>
             </form>
         </div>
